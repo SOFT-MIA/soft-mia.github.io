@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SOFT: Selective Data Obfuscation for Protecting LLM Fine-tuning against Membership Inference Attacks (USENIX Security 2025)">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SOFT: Selective Data Obfuscation for Protecting LLM Fine-tuning against Membership Inference Attacks (USENIX Security 2025)</title>
+
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WZM51TR63"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0WZM51TR63');
+  </script>
+
+  <meta name="citation_title" content="SOFT: Selective Data Obfuscation for Protecting LLM Fine-tuning against Membership Inference Attacks">
+  <meta name="citation_author" content="Kaiyuan Zhang">
+  <meta name="citation_author" content="Siyuan Cheng">
+  <meta name="citation_author" content="Hanxi Guo">
+  <meta name="citation_author" content="Yuetian Chen">
+  <meta name="citation_author" content="Zian Su">
+  <meta name="citation_author" content="Shengwei An">
+  <meta name="citation_author" content="Yuntao Du">
+  <meta name="citation_author" content="Charles Fleming">
+  <meta name="citation_author" content="Ashish Kundu">
+  <meta name="citation_author" content="Xiangyu Zhang">
+  <meta name="citation_author" content="Ninghui Li">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_conference_title" content="Proceedings of the 34th USENIX Security Symposium">
+  <meta name="citation_conference" content="USENIX Security">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="./static/css/custom-styles.css">
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SOFT: Selective Data Obfuscation for Protecting LLM Fine-tuning against Membership Inference Attacks (USENIX Security'25)</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://kaiyuanzhang.com/">Kaiyuan Zhang</a>,</span>
+            <span class="author-block">
+              <a href="https://www.cs.purdue.edu/homes/cheng535/">Siyuan Cheng</a>,</span>
+            <span class="author-block">
+              <a href="https://hanxiguo.me/">Hanxi Guo</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://stry233.github.io/">Yuetian Chen</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://ziansu.github.io/">Zian Su</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cs.purdue.edu/homes/an93/">Shengwei An</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://zealscott.com/">Yuntao Du</a>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://dblp.org/pid/18/3177.html">Charles Fleming</a><sup>&dagger;</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/ashishkundu/home">Ashish Kundu</a><sup>&dagger;</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cs.purdue.edu/homes/xyzhang/">Xiangyu Zhang</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cs.purdue.edu/homes/ninghui/">Ninghui Li</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Purdue University,</span>
+            <span class="author-block"><sup>&dagger;</sup>Cisco Research</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2506.10424"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/KaiyuanZh/SOFT"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Slides Link. Coming soon.-->
+              <span class="link-block">
+                <a href="./"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-powerpoint"></i>
+                  </span>
+                  <span>Slides (Coming soon)</span>
+                </a>
+              </span>
+              <!-- Video Link. Coming soon.-->
+              <span class="link-block">
+                <a href="./"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-video"></i>
+                  </span>
+                  <span>Video (Coming soon)</span>
+                </a>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="fancy-text-block">
+          <h2 class="fancy-title">The Calibration Challenge</h2>
+          <div class="fancy-content">
+            <p>
+              <span class="fancy-intro">Existing LLM MIAs mainly differ on how to differentiate</span>
+              <strong>uncommon sentences used in training</strong> from <strong>common sentences not used in training</strong>.
+              Many of these methods share similarities on <em>calibration</em> and differ mainly in their use of
+              <span class="highlight-term">loss</span>, <span class="highlight-term">log-likelihood</span>,
+              <span class="highlight-term">perplexity</span>, <span class="highlight-term">contrastive ratios</span>,
+              or an <span class="highlight-term">extra reference model</span>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="intuition-block">
+          <h2 class="intuition-title">Intuition</h2>
+          <div class="intuition-content">
+            <p>
+              Inspired by <span class="highlight-term">influence functions</span><sup><a href="#fn1" id="ref1">1</a></sup>, we define <i>influential samples</i> as those vulnerable to MIA. <b>SOFT</b> selectively replaces influential samples, i.e., those are <strong>easily memorized and exhibit lower loss values</strong>, with their <i>obfuscated counterparts</i>.
+            </p>
+          </div>
+          <div class="intuition-image-container">
+            <img src="./static/images/influential_sample.gif" alt="SOFT Intuition - Influential Sample Selection" class="intuition-image" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="abstract-block">
+          <h2 class="abstract-title">Abstract</h2>
+          <div class="abstract-content">
+            <p>
+              Large language models (LLMs) have achieved remarkable success and are widely adopted for diverse applications. However, fine-tuning these models often involves private or sensitive information, raising critical privacy concerns. In this work, we conduct the first comprehensive study evaluating the <strong>vulnerability of fine-tuned LLMs to membership inference attacks (MIAs)</strong>. Our empirical analysis demonstrates that MIAs exploit the <span class="highlight-term">loss reduction during fine-tuning</span>, making them highly effective in revealing membership information. These findings motivate the development of our defense. We propose <b>SOFT</b> (<b>S</b>elective data <b>O</b>bfuscation in LLM <b>F</b>ine-<b>T</b>uning), a novel defense technique that mitigates privacy leakage by leveraging <span class="highlight-term">influential data selection</span> with an adjustable parameter to balance <strong>utility preservation and privacy protection</strong>. Our extensive experiments span six diverse domains and multiple LLM architectures and scales. Results show that SOFT effectively reduces privacy risks while maintaining competitive model performance, offering a <strong>practical and scalable solution</strong> to safeguard sensitive information in fine-tuned LLMs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<div class="overview-section">
+  <img src="./static/images/overview.png" alt="illustrative-example" class="overview-image" />
+  <h2 class="overview-caption">
+    The core idea of SOFT involves substituting <i>influential samples</i> with
+    <span class="mobile-break"><br></span> semantically equivalent alternatives by a paraphraser during fine-tuning.
+  </h2>
+</div>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="fancy-text-block">
+          <h2 class="fancy-title">Selective Data Obfuscation</h2>
+          <div class="fancy-content">
+            <div class="process-steps">
+              <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h3 class="step-title">Warm-up Fine-tuning</h3>
+                  <p>Warm-up helps assess the <span class="highlight-term">initial influence level</span> of each sample</p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h3 class="step-title">Influential Data Selection</h3>
+                  <p>SOFT evaluates sample from the fine-tuning dataset and select <strong>influential ones</strong></p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h3 class="step-title">Data Obfuscation</h3>
+                  <p>SOFT replaces the selected <span class="highlight-term">influential samples</span> with <em>paraphrased versions</em></p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h3 class="step-title">Fine-tuning</h3>
+                  <p>Combining the <span class="highlight-term">obfuscated data</span> with the remaining <span class="highlight-term">safe data</span>, SOFT fine-tunes on the <strong>updated dataset</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="performance-block">
+          <h2 class="title is-3">Defense Effectiveness</h2>
+
+          <div class="performance-question">
+            How effective is SOFT in defending against membership inference attacks?
+          </div>
+          <div class="performance-image-container">
+            <img src="./static/images/evaluation.png" alt="SOFT Defense Effectiveness Evaluation" class="performance-image" />
+            <div class="performance-caption">
+              <strong>Comprehensive evaluation</strong> of SOFT's defense effectiveness against multiple state-of-the-art MIAs.
+              Performance is measured using <span class="highlight-term">AUC-ROC scores</span>, where <strong>lower values indicate stronger defense</strong>.
+              SOFT consistently demonstrates superior privacy protection across diverse datasets and attack scenarios while maintaining model utility.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="references">
+  <div class="container is-max-desktop content">
+    <h2 class="title">References</h2>
+    <div class="footnotes">
+      <p id="fn1">
+        <sup>1</sup> Koh, Pang Wei, and Percy Liang. "Understanding black-box predictions via influence functions." <em>International Conference on Machine Learning (ICML)</em>, 2017.
+        <a href="#ref1">↩</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <div class="citation">
+      <pre class="bibtex">
+        @inproceedings{zhang2025soft,
+            title = {SOFT: Selective Data Obfuscation for Protecting LLM Fine-tuning against Membership Inference Attacks},
+            author = {Zhang, Kaiyuan and Cheng, Siyuan and Guo, Hanxi and Chen, Yuetian and Su, Zian and An, Shengwei and Du, Yuntao and Fleming, Charles and Kundu, Ashish and Zhang, Xiangyu and Li, Ninghui},
+            booktitle = {34th USENIX Security Symposium (USENIX Security 25)},
+            year = {2025},
+            address = {Seattle, WA},
+            publisher = {USENIX Association},
+            month = aug
+        }
+      </pre>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            The design of this website is based on the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "name": "SOFT: Selective Data Obfuscation for Protecting LLM Fine-tuning against Membership Inference Attacks",
+  "author": [
+    {"@type": "Person", "name": "Kaiyuan Zhang"},
+    {"@type": "Person", "name": "Siyuan Cheng"},
+    {"@type": "Person", "name": "Hanxi Guo"},
+    {"@type": "Person", "name": "Yuetian Chen"},
+    {"@type": "Person", "name": "Zian Su"},
+    {"@type": "Person", "name": "Shengwei An"},
+    {"@type": "Person", "name": "Yuntao Du"},
+    {"@type": "Person", "name": "Charles Fleming"},
+    {"@type": "Person", "name": "Ashish Kundu"},
+    {"@type": "Person", "name": "Xiangyu Zhang"},
+    {"@type": "Person", "name": "Ninghui Li"}
+  ],
+  "datePublished": "2025",
+  "isPartOf": {
+    "@type": "PublicationEvent",
+    "name": "34th USENIX Security Symposium (USENIX Security 25)"
+  }
+}
+</script>
+
+</body>
+</html>
